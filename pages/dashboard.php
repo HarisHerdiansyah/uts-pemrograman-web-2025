@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include "../layouts/top.php"; ?>
 <style>
     main > section {
@@ -76,6 +77,5 @@
         </div>
     </section>
 </main>
-</body>
 
-</html>
+<?php include "../layouts/bottom.php"; ?>

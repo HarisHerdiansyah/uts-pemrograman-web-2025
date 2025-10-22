@@ -67,6 +67,5 @@ if (!isset($_SESSION['is_logged_in'])) {
         </div>
     </section>
 </main>
-</body>
 
-</html>
+<?php include "../layouts/bottom.php"; ?>

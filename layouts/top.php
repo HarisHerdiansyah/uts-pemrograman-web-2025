@@ -69,6 +69,27 @@
             font-size: 16px;
         }
 
+        nav aside {
+            position: relative;
+        }
+
+        aside .profile-popover {
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            color: #1b3c53;
+            border: 1px solid #1b3c53;
+            margin-top: 10px;
+            padding: 1rem;
+            border-radius: 8px;
+            width: 300px;
+            display: none;
+        }
+        
+        .visible {
+            display: block !important;
+        }
+
         main {
             padding: 4rem 14rem;
         }
@@ -91,5 +112,29 @@
             outline: none;
             border-color: #456882;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .logout-button,
+        .login-button {
+            margin-top: 1rem;
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .logout-button {
+            background-color: #ba2020;
+        }
+
+        .login-button {
+            margin: 0;
+            background-color: #1b3c53;
         }
     </style>

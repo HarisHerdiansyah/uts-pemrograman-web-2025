@@ -138,6 +138,4 @@
     });
 </script>
 
-</body>
-
-</html>
+<?php include "../layouts/bottom.php"; ?>

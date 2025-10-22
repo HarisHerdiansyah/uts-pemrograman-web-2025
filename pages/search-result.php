@@ -158,6 +158,5 @@
         </div>
     </section>
 </main>
-</body>
 
-</html>
+<?php include "../layouts/bottom.php"; ?>
