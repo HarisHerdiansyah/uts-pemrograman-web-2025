@@ -1,2 +1,4 @@
 <?php
-echo "Hello World";
+header("Location: pages/dashboard.php");
+exit();
+?>
