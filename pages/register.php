@@ -28,7 +28,8 @@
     #submit-button {
         margin-top: 1.5rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
     }
 
     #submit-button button {
@@ -46,6 +47,11 @@
     #submit-button button:hover {
         background-color: #98a1bc;
     }
+
+    #submit-button a {
+        color: #f9f3ef;
+        text-decoration: underline;
+    }
 </style>
 </head>
 <body>
@@ -53,7 +59,7 @@
 <main>
     <section>
         <h1>Daftar</h1>
-        <form>
+        <form id="register-form">
             <div class="form-control-wrapper">
                 <div id="form-control">
                     <label for="username">Nama:</label>
@@ -90,11 +96,48 @@
                 </div>
             </div>
             <div id="submit-button">
+                <a href="./login.php">Belum Punya Akun?</a>
                 <button type="submit">Daftar</button>
             </div>
         </form>
     </section>
 </main>
+
+<script>
+    async function registerUser(formData) {
+        try {
+            const response = await fetch("../service/register.service.php", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("Registrasi berhasil!");
+                window.location.href = "login.php";
+            } else {
+                alert(result.message || "Registrasi gagal. Silakan coba lagi.");
+            }
+        } catch (error) {
+            console.error("Error during registration:", error);
+            alert("Terjadi kesalahan. Silakan coba lagi nanti.");
+        }
+    }
+
+    const registerForm = document.getElementById("register-form");
+    registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(registerForm);
+
+        if (formData.get("password") !== formData.get("confirm-password")) {
+            alert("Kata sandi dan konfirmasi kata sandi tidak sesuai.");
+            return;
+        }
+
+        await registerUser(formData);
+    });
+</script>
+
 </body>
 
 </html>
