@@ -15,7 +15,7 @@ function registerUser($username, $email, $password) {
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (count($users) > 0) {
         http_response_code(409);
-        echo json_encode(["message" => "Email already registered."]);
+        echo json_encode(["message" => "Email sudah terdaftar."]);
         exit;
     }
 
@@ -29,12 +29,12 @@ function registerUser($username, $email, $password) {
 
     if (!$insertStmt->execute()) {
         http_response_code(500);
-        echo json_encode(["message" => "Failed to register user."]);
+        echo json_encode(["message" => "Gagal mendaftar pengguna."]);
         exit;
     }
 
     http_response_code(201);
-    echo json_encode(["message" => "Registration successful."]);
+    echo json_encode(["message" => "Pendaftaran berhasil."]);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

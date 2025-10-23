@@ -247,11 +247,11 @@ $sourceData = $sourceStmt->fetch(PDO::FETCH_ASSOC);
 
             document.querySelectorAll("#bookmark-btn").forEach((btn) => {
                 btn.addEventListener("click", async () => {
-                    const id = btn.getAttribute("data-dictId");
+                    const dictId = btn.getAttribute("data-dictId");
                     const isBookmarked = btn.getAttribute("data-isBookmarked");
                     const formData = new FormData();
-                    formData.append("dict_id", id);
-                    formData.append("action", isBookmarked ? "DELETE" : "UPDATE");
+                    formData.append("dict_id", dictId);
+                    formData.append("action", isBookmarked === "0" ? "UPDATE" : "DELETE");
                     try {
                         const response = await fetch("../service/dictionary-bookmark.service.php", {
                             method: "POST",

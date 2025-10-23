@@ -55,10 +55,6 @@ create table dictionary_bookmarks (
     foreign key (dict_id) references dictionaries(dict_id)
 );
 
--- Seeding Data untuk Database Kamus
--- Script ini hanya mengisi data master: authors, lexicons, dan dictionaries
--- Data users dan bookmarks akan diisi secara berkala saat pengujian
-
 -- ============================================
 -- 1. SEEDING TABLE AUTHORS
 -- ============================================
@@ -285,29 +281,3 @@ INSERT INTO dictionaries (dict_id, entry, meaning, lexicon_id) VALUES
 -- ============================================
 -- END OF SEEDING FILE
 -- ============================================
-select
-    d.dict_id, d.entry, d.meaning, l.title,
-    case when db.bookmark_id is not null then true else false end as is_bookmarked
-from dictionaries d
-inner join lexicons l on d.lexicon_id = l.lexicon_id
-left join dictionary_bookmarks db on d.dict_id = db.dict_id and db.user_id = 'a79736f83c5acdece05cd67d862dd413'
-where d.entry like '%hukum%'
-limit 5 offset 0;
-
-select * from dictionary_bookmarks;
-select * from users;
--- a79736f83c5acdece05cd67d862dd413
-
-describe lexicon_bookmarks;
-select * from authors;
-select * from lexicons;
-
-select
-    l.lexicon_id, l.title, l.words_in_total, l.description, l.date_of_prep, l.place_of_prep,
-    a.author_name,
-    IF(lb.bookmark_id is not null, true, false) as is_bookmarked
-from lexicons l
-inner join authors a on l.author_id = a.author_id
-left join lexicon_bookmarks lb on l.lexicon_id = lb.lexicon_id and lb.user_id = 'a79736f83c5acdece05cd67d862dd';
-
-select * from lexicon_bookmarks;

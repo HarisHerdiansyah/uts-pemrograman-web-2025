@@ -115,7 +115,7 @@ $lexicon = getLexiconBookmarks($userId);
                     }
                 } catch (error) {
                     console.error("Error:", error);
-                    alert("An error occurred while removing the bookmark.");
+                    alert("Terjadi kesalahan ketika memperbarui bookmark.");
                 }
             });
         });

@@ -4,7 +4,6 @@ session_start();
 
 function addDictionaryBookmark($userId, $dictId)
 {
-    echo "ok";
     if (!isset($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
         http_response_code(401);
         echo json_encode(["message" => "Unauthorized. Please log in."]);
@@ -20,19 +19,19 @@ function addDictionaryBookmark($userId, $dictId)
 
     if (!$stmt->execute()) {
         http_response_code(500);
-        echo json_encode(["message" => "Failed to add bookmark."]);
+        echo json_encode(["message" => "Gagal menambahkan bookmark."]);
         exit();
     }
 
     http_response_code(201);
-    echo json_encode(["message" => "Bookmark added successfully."]);
+    echo json_encode(["message" => "Bookmark berhasil ditambahkan."]);
 }
 
 function removeDictionaryBookmark($userId, $dictId)
 {
     if (!isset($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
         http_response_code(401);
-        echo json_encode(["message" => "Unauthorized. Please log in."]);
+        echo json_encode(["message" => "Otorisasi gagal. Silakan masuk terlebih dahulu."]);
         exit();
     }
 
@@ -43,12 +42,12 @@ function removeDictionaryBookmark($userId, $dictId)
 
     if (!$stmt->execute()) {
         http_response_code(500);
-        echo json_encode(["message" => "Failed to remove bookmark."]);
+        echo json_encode(["message" => "Gagal menghapus bookmark."]);
         exit();
     }
 
     http_response_code(200);
-    echo json_encode(["message" => "Bookmark removed successfully."]);
+    echo json_encode(["message" => "Bookmark berhasil dihapus."]);
 }
 
 function getDictionaryBookmarks($userId): array

@@ -6,5 +6,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     session_destroy();
 
     http_response_code(302);
-    echo json_encode(["message" => "Logout success."]);
+    echo json_encode(["message" => "Logout berhasil."]);
 }

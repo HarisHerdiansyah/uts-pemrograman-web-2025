@@ -14,14 +14,14 @@ function loginUser($email, $password) {
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (count($users) === 0) {
         http_response_code(404);
-        echo json_encode(["message" => "Account not found."]);
+        echo json_encode(["message" => "Akun tidak ditemukan."]);
         exit;
     }
 
     $firstUser = $users[0];
     if (!password_verify($password, $firstUser['password'])) {
         http_response_code(401);
-        echo json_encode(["message" => "Wrong password."]);
+        echo json_encode(["message" => "Kata sandi salah."]);
         exit;
     }
 
@@ -32,7 +32,7 @@ function loginUser($email, $password) {
     $_SESSION["email"] = $firstUser["email"];
 
     http_response_code(201);
-    echo json_encode(["message" => "Login success."]);
+    echo json_encode(["message" => "Login berhasil."]);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
