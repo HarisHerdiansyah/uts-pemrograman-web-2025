@@ -281,15 +281,19 @@ INSERT INTO dictionaries (dict_id, entry, meaning, lexicon_id) VALUES
                                                                    ('dict_0169', 'yurisprudensi', 'keputusan pengadilan yang dijadikan pedoman', 'lex_010'),
                                                                    ('dict_0170', 'notaris', 'pejabat umum yang berwenang membuat akta otentik', 'lex_010');
 
+
 -- ============================================
--- VERIFICATION QUERIES (Optional)
+-- END OF SEEDING FILE
 -- ============================================
-SELECT COUNT(*) as total_authors FROM authors;
-SELECT COUNT(*) as total_lexicons FROM lexicons;
-SELECT COUNT(*) as total_dictionaries FROM dictionaries;
---
-SELECT l.title, COUNT(d.dict_id) as total_entries
-FROM lexicons l
-LEFT JOIN dictionaries d ON l.lexicon_id = d.lexicon_id
-GROUP BY l.lexicon_id
-ORDER BY l.title;
+select
+    d.dict_id, d.entry, d.meaning, l.title,
+    case when db.bookmark_id is not null then true else false end as is_bookmarked
+from dictionaries d
+inner join lexicons l on d.lexicon_id = l.lexicon_id
+left join dictionary_bookmarks db on d.dict_id = db.dict_id and db.user_id = 'a79736f83c5acdece05cd67d862dd413'
+where d.entry like '%hukum%'
+limit 5 offset 0;
+
+select * from dictionary_bookmarks;
+select * from users;
+-- a79736f83c5acdece05cd67d862dd413
