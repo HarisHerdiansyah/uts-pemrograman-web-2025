@@ -168,7 +168,7 @@ $sourceData = $sourceStmt->fetch(PDO::FETCH_ASSOC);
                                 <?= htmlspecialchars($result["entry"]) ?>: <?= htmlspecialchars($result["meaning"]) ?>
                             </p>
                             <p>
-                                Sumber: <a href="#" class="source-link"><?= htmlspecialchars($result["title"]) ?></a>
+                                Sumber: <a href="<?= './lexicon-detail.php?lexiconId='.$result['lexicon_id'] ?>" class="source-link"><?= htmlspecialchars($result["title"]) ?></a>
                             </p>
                         </article>
                         <aside id="bookmark-btn" data-dictId="<?= $result["dict_id"] ?>" data-isBookmarked="<?= $result["is_bookmarked"] ? "1" : "0" ?>">
@@ -251,9 +251,9 @@ $sourceData = $sourceStmt->fetch(PDO::FETCH_ASSOC);
                     const isBookmarked = btn.getAttribute("data-isBookmarked");
                     const formData = new FormData();
                     formData.append("dict_id", id);
-                    formData.append("is_bookmarked", isBookmarked);
+                    formData.append("action", isBookmarked ? "DELETE" : "UPDATE");
                     try {
-                        const response = await fetch("../service/bookmark.service.php", {
+                        const response = await fetch("../service/dictionary-bookmark.service.php", {
                             method: "POST",
                             body: formData
                         });

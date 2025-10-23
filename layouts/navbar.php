@@ -12,10 +12,18 @@
                     <?= $_SESSION["email"] ?>
                 </p>
                 <hr/>
-                <button class="logout-button">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    Keluar
-                </button>
+                <div style="display: flex; justify-content: flex-start; align-items: center; gap: 0.8rem">
+                    <a href="../pages/bookmark.php">
+                        <button class="bookmark-button-nav">
+                            <i class="fa-solid fa-bookmark"></i>
+                            Bookmark
+                        </button>
+                    </a>
+                    <button class="logout-button">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Keluar
+                    </button>
+                </div>
             <?php else: ?>
                 <a href="../pages/login.php">
                     <button class="login-button">

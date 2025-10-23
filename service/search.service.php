@@ -6,7 +6,7 @@ function searchDictionaries($page, $limit, $phrase, $source): array
     global $pdo;
     $offset = ($page - 1) * $limit;
 
-    $query = "SELECT d.dict_id, d.entry, d.meaning, l.title,
+    $query = "SELECT d.dict_id, d.entry, d.meaning, l.title, l.lexicon_id,
           CASE WHEN db.bookmark_id IS NOT NULL THEN 1 ELSE 0 END AS is_bookmarked
           FROM dictionaries d
           INNER JOIN lexicons l ON d.lexicon_id = l.lexicon_id

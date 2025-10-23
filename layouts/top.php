@@ -115,7 +115,8 @@
         }
 
         .logout-button,
-        .login-button {
+        .login-button,
+        .bookmark-button-nav {
             margin-top: 1rem;
             color: #fff;
             border: none;
@@ -133,8 +134,12 @@
             background-color: #ba2020;
         }
 
+        .login-button,
+        .bookmark-button-nav {
+            background-color: #1b3c53;
+        }
+
         .login-button {
             margin: 0;
-            background-color: #1b3c53;
         }
     </style>

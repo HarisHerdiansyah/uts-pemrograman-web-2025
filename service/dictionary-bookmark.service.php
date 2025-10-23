@@ -2,7 +2,7 @@
 require_once "../config/database.php";
 session_start();
 
-function addBookmark($userId, $dictId)
+function addDictionaryBookmark($userId, $dictId)
 {
     echo "ok";
     if (!isset($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
@@ -28,7 +28,7 @@ function addBookmark($userId, $dictId)
     echo json_encode(["message" => "Bookmark added successfully."]);
 }
 
-function removeBookmark($userId, $dictId)
+function removeDictionaryBookmark($userId, $dictId)
 {
     if (!isset($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
         http_response_code(401);
@@ -51,14 +51,28 @@ function removeBookmark($userId, $dictId)
     echo json_encode(["message" => "Bookmark removed successfully."]);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $dictId = $_POST["dict_id"] ?? "";
-    $userId = $_SESSION["id"] ?? "";
-    $isBookmarked = $_POST["is_bookmarked"] ?? "0";
+function getDictionaryBookmarks($userId): array
+{
+    global $pdo;
+    $stmt = $pdo->prepare("
+        SELECT db.bookmark_id, d.dict_id, d.entry, d.meaning, l.title AS title
+        FROM dictionary_bookmarks db
+        JOIN dictionaries d ON db.dict_id = d.dict_id
+        JOIN lexicons l ON d.lexicon_id = l.lexicon_id
+        WHERE db.user_id = :user_id
+    ");
+    $stmt->bindParam(":user_id", $userId);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-    if ($isBookmarked === "0") {
-        addBookmark($userId, $dictId);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $action = $_POST["action"];
+    $userId = $_SESSION["id"];
+    $dictId = $_POST["dict_id"];
+    if ($_POST["action"] === "UPDATE") {
+        addDictionaryBookmark($userId, $dictId);
     } else {
-        removeBookmark($userId, $dictId);
+        removeDictionaryBookmark($userId, $dictId);
     }
 }

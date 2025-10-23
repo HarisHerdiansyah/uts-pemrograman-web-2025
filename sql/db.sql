@@ -297,3 +297,17 @@ limit 5 offset 0;
 select * from dictionary_bookmarks;
 select * from users;
 -- a79736f83c5acdece05cd67d862dd413
+
+describe lexicon_bookmarks;
+select * from authors;
+select * from lexicons;
+
+select
+    l.lexicon_id, l.title, l.words_in_total, l.description, l.date_of_prep, l.place_of_prep,
+    a.author_name,
+    IF(lb.bookmark_id is not null, true, false) as is_bookmarked
+from lexicons l
+inner join authors a on l.author_id = a.author_id
+left join lexicon_bookmarks lb on l.lexicon_id = lb.lexicon_id and lb.user_id = 'a79736f83c5acdece05cd67d862dd';
+
+select * from lexicon_bookmarks;
