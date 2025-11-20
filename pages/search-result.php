@@ -117,6 +117,15 @@
             font-weight: bold;
             color: #1b3c53;
         }
+
+        mark {
+            background-color: #ffd54f;
+            color: #1b3c53;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
     </style>
     </head>
     <body>
@@ -136,6 +145,22 @@ $searchData = searchDictionaries($page, $limit, $phrase, $source);
 $searchResults = $searchData['data'];
 $totalCount = $searchData['total'];
 $totalPage = ceil($totalCount / $limit);
+
+function highlightText($text, $query) {
+    if (empty($query)) {
+        return htmlspecialchars($text);
+    }
+
+    $query = preg_quote($query, '/');
+    $text = htmlspecialchars($text);
+    $highlighted = preg_replace(
+        '/(' . $query . ')/iu',
+        '<mark>$1</mark>',
+        $text
+    );
+
+    return $highlighted;
+}
 
 $sourceStmt = $pdo->prepare("SELECT title FROM lexicons WHERE lexicon_id = :source");
 $sourceStmt->bindParam(":source", $source);
@@ -167,7 +192,7 @@ $sourceData = $sourceStmt->fetch(PDO::FETCH_ASSOC);
                     <div class="search-result-item">
                         <article>
                             <p>
-                                <?= htmlspecialchars($result["entry"]) ?>: <?= htmlspecialchars($result["meaning"]) ?>
+                                <?= highlightText($result["entry"], $phrase) ?>: <?= highlightText($result["meaning"], $phrase) ?>
                             </p>
                             <p>
                                 Sumber: <a href="<?= './lexicon-detail.php?lexiconId='.$result['lexicon_id'] ?>" class="source-link"><?= htmlspecialchars($result["title"]) ?></a>

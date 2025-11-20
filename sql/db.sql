@@ -239,6 +239,55 @@ INSERT INTO dictionaries (dict_id, entry, meaning, lexicon_id) VALUES
 ('DICT_154', 'Selimut', 'Kemul (Ngoko); Singep (Krama)', 'LEX_999'),
 ('DICT_155', 'Piring', 'Piring (Ngoko); Ambeng (Krama)', 'LEX_999');
 
+-- ============================================================
+-- DATA TAMBAHAN: KAMUS JAWA KE INDONESIA
+-- ============================================================
+
+-- 1. Buat Leksikon Khusus "Jawa - Indonesia"
+-- Kita beri kode LEX_JI_01 agar mudah dikenali
+INSERT INTO lexicons (lexicon_id, title, words_in_total, date_of_prep, place_of_prep, description, author_id) VALUES
+    ('LEX_JI_01', 'Kamus Jawa - Indonesia (Dasar)', 50, '2025-10-25', 'Yogyakarta', 'Kamus balik untuk mencari arti kata Jawa ke dalam bahasa Indonesia.', 'AUTH_002');
+
+-- 2. Isi Kosakata (Entry = Jawa, Meaning = Indonesia)
+-- ID kita mulai dari DICT_JI_001 biar rapi
+
+INSERT INTO dictionaries (dict_id, entry, meaning, lexicon_id) VALUES
+-- KATA SAPAAN & TANYA
+('DICT_JI_001', 'Sugeng', 'Selamat; Hidup (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_002', 'Wilujeng', 'Selamat (Krama)', 'LEX_JI_01'),
+('DICT_JI_003', 'Punapa', 'Apa (Krama)', 'LEX_JI_01'),
+('DICT_JI_004', 'Sinten', 'Siapa (Krama)', 'LEX_JI_01'),
+('DICT_JI_005', 'Pinten', 'Berapa (Krama)', 'LEX_JI_01'),
+('DICT_JI_006', 'Pripun', 'Bagaimana (Ngoko/Madya)', 'LEX_JI_01'),
+('DICT_JI_007', 'Njih', 'Iya (Krama)', 'LEX_JI_01'),
+('DICT_JI_008', 'Mboten', 'Tidak (Krama)', 'LEX_JI_01'),
+('DICT_JI_009', 'Sampun', 'Sudah (Krama)', 'LEX_JI_01'),
+('DICT_JI_010', 'Dereng', 'Belum (Krama)', 'LEX_JI_01'),
+
+-- KATA BENDA (MAKANAN & ALAM)
+('DICT_JI_011', 'Sega', 'Nasi (Ngoko)', 'LEX_JI_01'),
+('DICT_JI_012', 'Sekul', 'Nasi (Krama)', 'LEX_JI_01'),
+('DICT_JI_013', 'Gedhang', 'Pisang', 'LEX_JI_01'),
+('DICT_JI_014', 'Kates', 'Pepaya', 'LEX_JI_01'),
+('DICT_JI_015', 'Lombok', 'Cabai', 'LEX_JI_01'),
+('DICT_JI_016', 'Uyah', 'Garam', 'LEX_JI_01'),
+('DICT_JI_017', 'Gula', 'Gula', 'LEX_JI_01'),
+('DICT_JI_018', 'Toyo', 'Air (Krama)', 'LEX_JI_01'),
+('DICT_JI_019', 'Lepen', 'Sungai (Krama)', 'LEX_JI_01'),
+('DICT_JI_020', 'Sawah', 'Sawah', 'LEX_JI_01'),
+
+-- KATA KERJA (VERBS)
+('DICT_JI_021', 'Dahar', 'Makan (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_022', 'Nedha', 'Makan (Krama Madya)', 'LEX_JI_01'),
+('DICT_JI_023', 'Sare', 'Tidur (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_024', 'Tilem', 'Tidur (Krama)', 'LEX_JI_01'),
+('DICT_JI_025', 'Mirsani', 'Melihat (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_026', 'Mireng', 'Mendengar (Krama)', 'LEX_JI_01'),
+('DICT_JI_027', 'Tindak', 'Pergi (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_028', 'Rawuh', 'Datang (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_029', 'Kondur', 'Pulang (Krama Inggil)', 'LEX_JI_01'),
+('DICT_JI_030', 'Gerah', 'Sakit (Krama Inggil)', 'LEX_JI_01');
+
 -- ============================================
 -- END OF SEEDING FILE
 -- ============================================
