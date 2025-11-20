@@ -132,8 +132,10 @@ $limit = isset($_GET["limit"]) ? (int)$_GET["limit"] : 5;
 $phrase = $_GET["phrase"] ?? "";
 $source = $_GET["source"] ?? "";
 
-$searchResults = searchDictionaries($page, $limit, $phrase, $source);
-$totalPage = ceil(count($searchResults) / $limit);
+$searchData = searchDictionaries($page, $limit, $phrase, $source);
+$searchResults = $searchData['data'];
+$totalCount = $searchData['total'];
+$totalPage = ceil($totalCount / $limit);
 
 $sourceStmt = $pdo->prepare("SELECT title FROM lexicons WHERE lexicon_id = :source");
 $sourceStmt->bindParam(":source", $source);
